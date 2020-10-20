@@ -1,0 +1,85 @@
+{% extends 'basFrontOffice.html'%}
+{% load static %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<main id="main">
+<section id="featured" class="featured">
+
+<div class="container">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+            <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active" >
+                        <div class="carousel-container">
+                            <div class="carousel-content">
+                                <h2 class="animated fadeInDown">Recommendation basé sur les compétences <span></span></h2>
+                                <br>
+                                <br>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <form method="POST">
+                                                {% csrf_token %}
+                                            <label for="exampleFormControlSelect1">Selectionner le profil</label>
+                                            <select class="form-control" id="exampleFormControlSelect1" name="Profile">
+                                            <option value="Développeur Web Back-End">Développeur Web Back-End</option>
+                                            <option value="Developpeur Front-End">Developpeur Front-End</option>
+                                            <option value="Développeur Embarqué Middleware">Développeur Embarqué Middleware</option>
+                                            <option value="Technical Lead/ Architecte JEE">Technical Lead/ Architecte JEE</option>
+                                            <option value="Développeur FullStack JS">Développeur FullStack JS</option>
+                                            <option value="Développeur JAVA/JEE">Développeur JAVA/JEE</option>
+                                            <option value="Développeur PHP/Symfony">Développeur PHP/Symfony</option>
+                                            <option value="Développeur DRUPAL">Développeur DRUPAL</option>
+                                            <option value="Product Owner/ PO">Product Owner/ PO</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="exampleFormControlSelect1">Nombre de recommendation</label>
+                                            <input type="number" class="form-control" name="numRec"/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <input type="submit" class="btn btn-outline-success" value="Recommender">
+                                    </form>
+                                  </div>
+
+                                  <br/>
+                                  <br/>
+
+                                  <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        {% for data in DataFrame %}
+                                            <th>{{ data }}</th>
+                                        {% endfor %}
+                                    </thead>
+                                    <tbody>
+                                        {% for index, record in DataFrame.iterrows %}
+                                        <tr>
+                                            {% for value in record %}
+                                                <td>{{ value }}</td>
+                                            {% endfor %}
+                                            
+                                        </tr>
+                                        
+                                    {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                        {% for data in DataFrame %}
+                                            <th>{{ data }}</th>
+                                        {% endfor %}
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </section>
+</main>  
+{% endblock %}

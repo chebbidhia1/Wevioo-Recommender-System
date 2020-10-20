@@ -1,0 +1,70 @@
+{% extends 'basFrontOffice.html'%}
+{% load static %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<main id="main">
+<section id="featured" class="featured">
+
+<div class="container">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+            <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active" >
+                        <div class="carousel-container">
+                            <div class="carousel-content">
+                                <h2 class="animated fadeInDown">Similarity to an Internal candidate</span></h2>
+                                <br>
+                                <br>
+                                
+                                  <br>
+                                  <br>
+                                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        {% for data in DataFrame %}
+                                            <th>{{ data }}</th>
+                                        {% endfor %}
+                                        <th>action</th>
+                                    </thead>
+                                    <tbody>
+                                        {% for index, record in DataFrame.iterrows %}
+                                        <tr>
+                                            {% for value in record %}
+                                                {% if forloop.counter >= 3 %}
+                                                <td>{{ value }} % </td>
+                                                {%else %}
+                                                <td>{{ value }}  </td>
+                                                {%endif%}
+                                            {% endfor %}
+                                            <td>
+                                                <form method="POST">
+                                                    {% csrf_token %}
+                                                        <input type="hidden" value="{{index}}" name="indice"/>
+                                                        <input type="submit" class="btn btn-primary" value="See 10 similar">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        
+                                    {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                        {% for data in DataFrame %}
+                                            <th>{{ data }}</th>
+                                        {% endfor %}
+                                    </tfoot>
+                                </table>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </section>
+</main>  
+
+{% endblock %}

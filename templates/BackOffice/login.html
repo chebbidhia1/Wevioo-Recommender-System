@@ -1,0 +1,55 @@
+{% extends 'baseBackOffice.html' %}
+{% load static %}
+
+
+{% block sidebar %}
+{% endblock %}
+
+{% block header %}
+<center><img src="{% static 'images/wevioologo.png' %}" alt="" height="200"/></center>
+{{err}}
+<br>
+<br>
+<br>
+<br>
+{% endblock %}
+
+{% block content %}
+<div class="authincation h-100">
+    <div class="container-fluid h-100">
+        <div class="row justify-content-center h-100 align-items-center">
+            <div class="col-md-6">
+                <div class="authincation-content">
+                    <div class="row no-gutters">
+                        <div class="col-xl-12">
+                            <div class="auth-form">
+                                <h4 class="text-center mb-4">Sign in your account</h4>
+                                <form action="login" method="POST">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label><strong>Email</strong></label>
+                                        <input type="text" class="form-control" placeholder="hello@example.com" name="username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><strong>Password</strong></label>
+                                        <input type="password" class="form-control" placeholder="Password" name="password">
+                                    </div>
+                                    <div class="form-row d-flex justify-content-between mt-4 mb-2">
+                                        <div class="form-group">
+                                            <a href="page-forgot-password.html">Forgot Password?</a>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="text-center">
+                                        <input type="submit" class="btn btn-primary btn-block" style="background-color: #343957;" value="Se connecter">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

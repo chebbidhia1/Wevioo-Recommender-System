@@ -1,0 +1,40 @@
+{% extends 'baseBackOffice.html'%}
+{% load static %}
+
+{% block content %}
+
+<div class="content-wrap">
+    <form method="POST">
+        {% csrf_token %}
+    <div class="row" style="margin-left: 20px;">
+        {% for key,value in dict.items %}
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">{{key}}</h4>
+                    <br>
+                    <div id=" w-100">
+                        <div class="row">
+                            {% for key1,value1 in value.items %}
+                            <div class="col-md-4">
+                                <label>{{key1}} </label>
+                                <input type="number" value={{value1}} class="tdl-new form-control input-sm .w25" name = "{{key1}} {{key}}" >
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+        
+            <div class="col-lg-12">
+                <input class="btn btn-primary btn-lg btn-block" type = "submit" >
+            </div>
+        
+    </div>
+</form>
+</div>
+
+{% endblock %}

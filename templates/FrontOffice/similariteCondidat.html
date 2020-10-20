@@ -1,0 +1,73 @@
+{% extends 'basFrontOffice.html'%}
+{% load static %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<main id="main">
+<section id="featured" class="featured">
+
+<div class="container">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+            <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active" >
+                        <div class="carousel-container">
+                            <div class="carousel-content">
+                                <h2 class="animated fadeInDown">Similarity to an External candidate</span></h2>
+                                <br>
+                                <br>
+                                
+                                <div class="form-group">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <label for="exampleInputEmail1">URL LinkedIn Profile</label>
+                                    <input  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Paste a LinkedIn Profile URL" name="urlprofile">
+                                    <small id="emailHelp" class="form-text text-muted">We will collect data from the profile you paste its URL</small>
+                                    <br/>
+                                    <input type="submit" value="See similar candidates" class="btn btn-success"/>
+                                </form>  
+                                </div>
+                                  <br>
+                                  <br>
+                                
+                                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        {% for data in DataFrame %}
+                                            <th>{{ data }}</th>
+                                        {% endfor %}
+                                    </thead>
+                                    <tbody>
+                                        {% for _, record in DataFrame.iterrows %}
+                                        <tr>
+                                            {% for value in record %}
+                                            {% if forloop.counter >= 3 %}
+                                            <td>{{ value }} % </td>
+                                            {%else %}
+                                            <td>{{ value }}  </td>
+                                            {%endif%}
+                                            {% endfor %}
+                                        </tr>
+                                        
+                                    {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                        {% for data in DataFrame %}
+                                            <th>{{ data }}</th>
+                                        {% endfor %}
+                                    </tfoot>
+                                </table>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </section>
+</main>  
+
+{% endblock %}
